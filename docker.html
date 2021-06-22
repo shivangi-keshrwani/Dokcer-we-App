@@ -1,0 +1,107 @@
+
+ <style>
+ body {
+	background-image: url("pic2.gif");
+	margin-left:150px;  
+	margin-right:250px
+  }
+  h1{
+   margin-top: 30px;
+   margin: 1em 0 0.5em 0;
+	 font-weight: 600;
+	 font-family: 'Titillium Web', sans-serif;
+	 position: relative;  
+	 font-size: 36px;
+	 line-height: 50px;
+	 padding: 47px 15px 15px 30%;
+	 color: #e6e3ee;
+	 box-shadow: 
+		 inset 0 0 0 1px rgba(173, 202, 240, 0.4), 
+		 inset  0 0 5px rgba(169, 201, 243, 0.5),
+		 inset 0px 0 30px white;
+	 border-radius: 0 10px 0 10px;
+	 background:  url("docker2_c.jpeg") no-repeat center left;
+   }
+   
+  #screen {
+   background: rgb(50, 125, 134);
+   width: 90%;
+   height: 500px;
+   border-style:dotted;
+   border-color: #fdfdfd;
+   margin: 0 auto;
+   padding: 2px;
+   opacity: 0.9;
+   overflow:inherit;
+ }
+ #textBox {
+	   width: auto;
+	   color: #f2f3ed;
+	   border: none;
+	   box-sizing: border-box;
+	   font-size: 20px;
+	   vertical-align: middle;
+	   background-color: #000;
+	   opacity: inherit;}
+
+    
+    #injected {
+      padding-left: 10px;
+      font-size: 18px;
+      color: white;
+      text-align: justify;
+      margin-top: 5px;
+    }
+  
+    #injected ul {
+      list-style: none;
+    }
+  
+    #injected li,
+    th,
+    td {
+      padding-right: 45px;
+      padding-left: 25px;
+      padding-top: 7px;
+      text-align: left;
+    }
+  
+    #userInput {
+      margin-top: 20px;
+      padding: 10px;
+    }
+  
+ </style>
+   
+ 
+ <div id="container">
+  <div id="bar"></div>
+      <div class="header"><h1>* Docker Web Application </h1></div>
+    </div>
+    <div id="screen">
+      <div id="userInput">
+      <input type="text" value="root@Shivangi kesharwani:~$" id="commandprompt" size="30" readonly="readonly">
+        <input type="text" id="textarea"  placeholder="Enter the command" name="x" size="50"
+          autofocus>
+        <button onclick="lw();">RUN</button>
+      </div>
+      <pre>
+      <div id="injected">OUTPUT COMES HERE</div>
+      </pre>
+    </div>
+  </div>
+
+  <script>
+    function lw() {
+    
+    var xhr = new XMLHttpRequest();
+    alert("Request Sending.....");
+    xhr.open("GET","http://13.232.228.54/cgi-bin/docker.py?x="+ document.getElementById("textarea").value,true);
+    xhr.send();
+    xhr.onload =  function()  {
+    document.getElementById("injected").innerHTML = xhr.responseText ;
+    alert("your output comes now.....");
+    }
+    }
+    </script>
+    
